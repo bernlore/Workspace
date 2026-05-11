@@ -14,7 +14,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
-
+node_modules/
 # Test / type / lint caches
 .pytest_cache/
 .mypy_cache/
