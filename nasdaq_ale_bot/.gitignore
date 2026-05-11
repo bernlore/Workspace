@@ -1,15 +1,95 @@
+# ---------------------------------------------------------------------------
+# Secrets — never commit
+# ---------------------------------------------------------------------------
 .env
 *.env
 .env.local
+!.env.example
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Test / type / lint caches
 .pytest_cache/
-.omc/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.cache/
+
+# Packaging / build artefacts
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+.eggs/
+
+# Virtual envs
+.venv/
+venv/
+env/
+ENV/
+
+# ---------------------------------------------------------------------------
+# Market-data files — large binaries, regenerated via scripts/fetch_*.py
+# ---------------------------------------------------------------------------
+# data/historical/manifest.json is intentionally COMMITTED (data-integrity hashes)
 *.parquet
 data/historical/*.parquet
-# data/historical/manifest.json is intentionally committed
-htmlcov/
-.coverage
-.mypy_cache/
-dist/
-build/
-*.egg-info/
+data/historical/*.csv
+# News-blackout CSV is `touch`ed every run to refresh mtime — not source data.
+data/news_events.csv
+
+# ---------------------------------------------------------------------------
+# Project state / outputs
+# ---------------------------------------------------------------------------
+.omc/
+results/
+
+# ---------------------------------------------------------------------------
+# Claude Code settings
+# ---------------------------------------------------------------------------
+# Project-shared settings stay committed (.claude/settings.json).
+# User-private overrides do not.
+.claude/settings.local.json
+.claude/*.local.json
+.claude/cache/
+
+# ---------------------------------------------------------------------------
+# IDE / editor cruft
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# ---------------------------------------------------------------------------
+# OS cruft
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Logs / temp
+# ---------------------------------------------------------------------------
+*.log
+*.tmp
+*.bak
