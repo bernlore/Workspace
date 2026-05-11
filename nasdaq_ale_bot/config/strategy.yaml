@@ -1,3 +1,16 @@
+# ===========================================================================
+# Phase 3 LOCKED parameters — final picks, snapshot at phase3-complete tag.
+# These values are the strategy contract; do not modify without re-running
+# walk-forward validation. The grid (backtest/grid.py) may override them per
+# combo during exploration, but production / non-grid scripts read these.
+# ===========================================================================
+ifvg_tolerance_ticks: 2
+rr_cap: 1.1
+cisd_lookback_bars: 20
+# trend_filter_efficiency_ratio is below in the gate section (3.0).
+# commission_per_contract is hardcoded in execution/mock_broker.py
+# (COMMISSION_PER_CONTRACT = Decimal("4.50")) — CME standard.
+
 risk:
   mode: fixed          # fixed | percent
   fixed_usd: 750
