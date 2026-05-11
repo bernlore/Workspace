@@ -1,0 +1,51 @@
+primary:
+  symbol: NQ
+  tick: 0.25
+  point_value: 20.0
+  atr_ratio_vs_nq: 1.0
+  calendar_id: CME_GLOBEX
+  futures:
+    contract_size: 1
+    tick_value_usd: 5.00
+    margin_requirement_usd: 16500
+    rth_session: CME_GLOBEX
+    maintenance_window: "17:00-18:00 ET"
+
+correlated:
+  symbol: ES
+  tick: 0.25
+  point_value: 50.0
+  atr_ratio_vs_nq: 1.0
+  calendar_id: CME_GLOBEX
+  futures:
+    contract_size: 1
+    tick_value_usd: 12.50
+    margin_requirement_usd: 13200
+    rth_session: CME_GLOBEX
+    maintenance_window: "17:00-18:00 ET"
+
+mnq:
+  symbol: MNQ
+  tick: 0.25
+  point_value: 2.0
+  atr_ratio_vs_nq: 1.0
+  calendar_id: CME_GLOBEX
+  futures:
+    contract_size: 2
+    tick_value_usd: 0.50
+    margin_requirement_usd: 1500
+    rth_session: CME_GLOBEX
+    maintenance_window: "17:00-18:00 ET"
+
+es:
+  symbol: ES
+  tick: 0.25
+  point_value: 50.0
+  atr_ratio_vs_nq: 1.0
+  calendar_id: CME_GLOBEX
+  futures:
+    contract_size: 1
+    tick_value_usd: 12.50
+    margin_requirement_usd: 13200
+    rth_session: CME_GLOBEX
+    maintenance_window: "17:00-18:00 ET"

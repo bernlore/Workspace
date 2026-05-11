@@ -1,0 +1,44 @@
+{
+  "fetch_timestamp_utc": "2026-04-28T10:23:11.837449+00:00",
+  "alpaca_api_version": "v2",
+  "files": {
+    "QQQ_1m_2024_2025.parquet": {
+      "sha256": "8a6c8f243ab24b5ab401c5159f5cc6441138e136a8e54fefde4a1cbf0ecb58fd",
+      "rows": 431119,
+      "date_range": [
+        "2024-01-02",
+        "2025-12-31"
+      ]
+    },
+    "SPY_1m_2024_2025.parquet": {
+      "sha256": "0256ece3d7fa16c08ca1bb107e16f2645cae68195b63aee8da9d7b85a710b0bd",
+      "rows": 407708,
+      "date_range": [
+        "2024-01-02",
+        "2025-12-30"
+      ]
+    },
+    "NQ_1min_2022_2025.csv": {
+      "sha256": "1577e60a7feab411e49da7a56c7052a64738cd1757cfd60aa11fd783ff43b60b",
+      "rows": 1048575,
+      "date_range": [
+        "2022-12-26",
+        "2025-12-12"
+      ],
+      "source": "kaggle",
+      "tz_native": "America/New_York"
+    },
+    "mes1123.csv": {
+      "sha256": "ea7a375ecc2a8e0eba6238616d7e283aec744d9c4b02a38abf818fbb017cb924",
+      "rows_total": 1091440,
+      "rows_es_outright_dedup": 355075,
+      "date_range": [
+        "2023-11-20",
+        "2024-11-19"
+      ],
+      "source": "databento",
+      "symbol_filter": "ES outright (no spreads, no MES)",
+      "tz_native": "UTC"
+    }
+  }
+}

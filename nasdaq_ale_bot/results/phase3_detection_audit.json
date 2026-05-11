@@ -1,0 +1,1312 @@
+{
+  "total_oos_trades": 26,
+  "bias_distribution": {
+    "SHORT": 10,
+    "LONG": 16
+  },
+  "smt_distribution": {
+    "NONE": 15,
+    "BEARISH_DIVERGENCE": 5,
+    "BULLISH_DIVERGENCE": 6
+  },
+  "bias_pct": {
+    "SHORT": 38.5,
+    "LONG": 61.5
+  },
+  "smt_pct": {
+    "NONE": 57.7,
+    "BEARISH_DIVERGENCE": 19.2,
+    "BULLISH_DIVERGENCE": 23.1
+  },
+  "smt_aligned_with_bias": 11,
+  "smt_opposite_to_bias": 0,
+  "smt_none": 15,
+  "zone_compliance": {
+    "longs_in_discount": 16,
+    "longs_NOT_in_discount": 0,
+    "shorts_in_premium": 10,
+    "shorts_NOT_in_premium": 0
+  },
+  "sample_indices": [
+    0,
+    3,
+    8,
+    20,
+    23
+  ],
+  "sample_trades": [
+    {
+      "entry_ts": "2024-03-11T13:49:00+00:00",
+      "exit_ts": "2024-03-11T13:55:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "437.12",
+      "exit_price": "436.29300000000006",
+      "exit_reason": "target_hit",
+      "pnl": "0.82699999999994",
+      "arming_bar_ts": "2024-03-11 13:48:00+00:00",
+      "arming_bar_iso": "2024-03-11T13:48:00+00:00",
+      "entry_price": 437.115,
+      "stop_price": 437.79999999999995,
+      "take_profit": 436.29300000000006,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-03-11T13:40:00+00:00",
+        "high": 438.05,
+        "low": 437.54,
+        "close": 437.65,
+        "open": 437.7
+      },
+      "cisd_bar": {
+        "ts": "2024-03-11T13:48:00+00:00",
+        "close": 437.115,
+        "open": 437.41,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-03-11T13:48:00+00:00",
+        "upper": 437.53,
+        "lower": 437.115,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 436.945,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-04-09T14:14:00+00:00",
+      "exit_ts": "2024-04-09T14:26:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "442.2",
+      "exit_price": "441.67",
+      "exit_reason": "stop_out",
+      "pnl": "-0.53",
+      "arming_bar_ts": "2024-04-09 14:13:00+00:00",
+      "arming_bar_iso": "2024-04-09T14:13:00+00:00",
+      "entry_price": 442.2099,
+      "stop_price": 441.67,
+      "take_profit": 442.85778,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-04-09T14:06:00+00:00",
+        "high": 441.965,
+        "low": 441.52,
+        "close": 441.725,
+        "open": 441.92
+      },
+      "cisd_bar": {
+        "ts": "2024-04-09T14:13:00+00:00",
+        "close": 442.2099,
+        "open": 441.84,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-04-09T14:13:00+00:00",
+        "upper": 442.2099,
+        "lower": 441.7973,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 442.36699999999996,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-04-29T14:00:00+00:00",
+      "exit_ts": "2024-04-29T14:22:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "431.8",
+      "exit_price": "432.74199999999996",
+      "exit_reason": "target_hit",
+      "pnl": "0.94199999999996",
+      "arming_bar_ts": "2024-04-29 13:59:00+00:00",
+      "arming_bar_iso": "2024-04-29T13:59:00+00:00",
+      "entry_price": 431.8,
+      "stop_price": 431.01500000000004,
+      "take_profit": 432.74199999999996,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-04-29T13:53:00+00:00",
+        "high": 431.1984,
+        "low": 430.91,
+        "close": 431.07,
+        "open": 431.19
+      },
+      "cisd_bar": {
+        "ts": "2024-04-29T13:59:00+00:00",
+        "close": 431.8,
+        "open": 431.61,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-04-29T13:59:00+00:00",
+        "upper": 431.8,
+        "lower": 431.55,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 432.33500000000004,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-06-11T19:42:00+00:00",
+      "exit_ts": "2024-06-11T19:50:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "467.055",
+      "exit_price": "466.78650000000005",
+      "exit_reason": "stop_out",
+      "pnl": "-0.26849999999995",
+      "arming_bar_ts": "2024-06-11 19:41:00+00:00",
+      "arming_bar_iso": "2024-06-11T19:41:00+00:00",
+      "entry_price": 467.0699,
+      "stop_price": 466.78650000000005,
+      "take_profit": 467.40997999999996,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-06-11T19:28:00+00:00",
+        "high": 466.92,
+        "low": 466.81,
+        "close": 466.89,
+        "open": 466.91
+      },
+      "cisd_bar": {
+        "ts": "2024-06-11T19:41:00+00:00",
+        "close": 467.0699,
+        "open": 466.96,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-06-11T19:41:00+00:00",
+        "upper": 467.0699,
+        "lower": 466.92,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 467.175,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-06-24T15:26:00+00:00",
+      "exit_ts": "2024-06-24T15:39:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "477.47",
+      "exit_price": "478.16999999999996",
+      "exit_reason": "stop_out",
+      "pnl": "-0.69999999999996",
+      "arming_bar_ts": "2024-06-24 15:25:00+00:00",
+      "arming_bar_iso": "2024-06-24T15:25:00+00:00",
+      "entry_price": 477.45,
+      "stop_price": 478.16999999999996,
+      "take_profit": 476.586,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-06-24T15:13:00+00:00",
+        "high": 478.0,
+        "low": 477.745,
+        "close": 477.93,
+        "open": 477.83
+      },
+      "cisd_bar": {
+        "ts": "2024-06-24T15:25:00+00:00",
+        "close": 477.45,
+        "open": 477.47,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-06-24T15:25:00+00:00",
+        "upper": 477.68,
+        "lower": 477.45,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 476.885,
+      "in_discount_long": null,
+      "in_premium_short": true
+    }
+  ],
+  "all_trades": [
+    {
+      "entry_ts": "2024-03-11T13:49:00+00:00",
+      "exit_ts": "2024-03-11T13:55:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "437.12",
+      "exit_price": "436.29300000000006",
+      "exit_reason": "target_hit",
+      "pnl": "0.82699999999994",
+      "arming_bar_ts": "2024-03-11 13:48:00+00:00",
+      "arming_bar_iso": "2024-03-11T13:48:00+00:00",
+      "entry_price": 437.115,
+      "stop_price": 437.79999999999995,
+      "take_profit": 436.29300000000006,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-03-11T13:40:00+00:00",
+        "high": 438.05,
+        "low": 437.54,
+        "close": 437.65,
+        "open": 437.7
+      },
+      "cisd_bar": {
+        "ts": "2024-03-11T13:48:00+00:00",
+        "close": 437.115,
+        "open": 437.41,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-03-11T13:48:00+00:00",
+        "upper": 437.53,
+        "lower": 437.115,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 436.945,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-03-14T14:43:00+00:00",
+      "exit_ts": "2024-03-14T15:12:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "439.48",
+      "exit_price": "440.56",
+      "exit_reason": "stop_out",
+      "pnl": "-1.08",
+      "arming_bar_ts": "2024-03-14 14:42:00+00:00",
+      "arming_bar_iso": "2024-03-14T14:42:00+00:00",
+      "entry_price": 439.4701,
+      "stop_price": 440.56,
+      "take_profit": 438.16222,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "BEARISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-03-14T14:29:00+00:00",
+        "high": 440.13,
+        "low": 439.57,
+        "close": 440.055,
+        "open": 439.58
+      },
+      "cisd_bar": {
+        "ts": "2024-03-14T14:42:00+00:00",
+        "close": 439.4701,
+        "open": 439.58,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-03-14T14:42:00+00:00",
+        "upper": 439.89009999999996,
+        "lower": 439.4701,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 438.76,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-03-15T17:48:00+00:00",
+      "exit_ts": "2024-03-15T17:53:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "433.7696",
+      "exit_price": "434.03",
+      "exit_reason": "stop_out",
+      "pnl": "-0.2604",
+      "arming_bar_ts": "2024-03-15 17:47:00+00:00",
+      "arming_bar_iso": "2024-03-15T17:47:00+00:00",
+      "entry_price": 433.7591,
+      "stop_price": 434.03,
+      "take_profit": 433.43402000000003,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "BEARISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-03-15T17:33:00+00:00",
+        "high": 434.01,
+        "low": 433.8499,
+        "close": 433.87,
+        "open": 433.92
+      },
+      "cisd_bar": {
+        "ts": "2024-03-15T17:47:00+00:00",
+        "close": 433.7591,
+        "open": 433.86,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-03-15T17:47:00+00:00",
+        "upper": 433.90999999999997,
+        "lower": 433.7591,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 433.405,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-04-09T14:14:00+00:00",
+      "exit_ts": "2024-04-09T14:26:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "442.2",
+      "exit_price": "441.67",
+      "exit_reason": "stop_out",
+      "pnl": "-0.53",
+      "arming_bar_ts": "2024-04-09 14:13:00+00:00",
+      "arming_bar_iso": "2024-04-09T14:13:00+00:00",
+      "entry_price": 442.2099,
+      "stop_price": 441.67,
+      "take_profit": 442.85778,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-04-09T14:06:00+00:00",
+        "high": 441.965,
+        "low": 441.52,
+        "close": 441.725,
+        "open": 441.92
+      },
+      "cisd_bar": {
+        "ts": "2024-04-09T14:13:00+00:00",
+        "close": 442.2099,
+        "open": 441.84,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-04-09T14:13:00+00:00",
+        "upper": 442.2099,
+        "lower": 441.7973,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 442.36699999999996,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-04-10T13:47:00+00:00",
+      "exit_ts": "2024-04-10T13:51:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "436.48",
+      "exit_price": "437.84999999999997",
+      "exit_reason": "stop_out",
+      "pnl": "-1.36999999999997",
+      "arming_bar_ts": "2024-04-10 13:46:00+00:00",
+      "arming_bar_iso": "2024-04-10T13:46:00+00:00",
+      "entry_price": 436.47,
+      "stop_price": 437.84999999999997,
+      "take_profit": 434.8140000000001,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "BEARISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-04-10T13:33:00+00:00",
+        "high": 437.68,
+        "low": 436.92,
+        "close": 437.12,
+        "open": 437.68
+      },
+      "cisd_bar": {
+        "ts": "2024-04-10T13:46:00+00:00",
+        "close": 436.47,
+        "open": 436.86,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-04-10T13:46:00+00:00",
+        "upper": 437.26,
+        "lower": 436.47,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 436.41499999999996,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-04-15T18:02:00+00:00",
+      "exit_ts": "2024-04-15T18:12:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "431.658",
+      "exit_price": "431.01948000000004",
+      "exit_reason": "target_hit",
+      "pnl": "0.63851999999996",
+      "arming_bar_ts": "2024-04-15 18:01:00+00:00",
+      "arming_bar_iso": "2024-04-15T18:01:00+00:00",
+      "entry_price": 431.658,
+      "stop_price": 432.1901,
+      "take_profit": 431.01948000000004,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "BEARISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-04-15T17:57:00+00:00",
+        "high": 432.19,
+        "low": 431.705,
+        "close": 431.94,
+        "open": 431.85
+      },
+      "cisd_bar": {
+        "ts": "2024-04-15T18:01:00+00:00",
+        "close": 431.658,
+        "open": 432.04,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-04-15T18:01:00+00:00",
+        "upper": 432.12,
+        "lower": 431.658,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 431.62,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-04-18T19:17:00+00:00",
+      "exit_ts": "2024-04-18T19:36:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "423.65",
+      "exit_price": "424.21999999999997",
+      "exit_reason": "stop_out",
+      "pnl": "-0.56999999999997",
+      "arming_bar_ts": "2024-04-18 19:16:00+00:00",
+      "arming_bar_iso": "2024-04-18T19:16:00+00:00",
+      "entry_price": 423.6431,
+      "stop_price": 424.21999999999997,
+      "take_profit": 422.95082,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "BEARISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-04-18T19:07:00+00:00",
+        "high": 424.26,
+        "low": 423.91,
+        "close": 424.115,
+        "open": 423.91
+      },
+      "cisd_bar": {
+        "ts": "2024-04-18T19:16:00+00:00",
+        "close": 423.6431,
+        "open": 423.8594,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-04-18T19:16:00+00:00",
+        "upper": 423.96999999999997,
+        "lower": 423.6431,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 423.61249999999995,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-04-23T19:12:00+00:00",
+      "exit_ts": "2024-04-23T19:30:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "425.68",
+      "exit_price": "425.41",
+      "exit_reason": "stop_out",
+      "pnl": "-0.27",
+      "arming_bar_ts": "2024-04-23 19:11:00+00:00",
+      "arming_bar_iso": "2024-04-23T19:11:00+00:00",
+      "entry_price": 425.69,
+      "stop_price": 425.41,
+      "take_profit": 426.02599999999995,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-04-23T19:05:00+00:00",
+        "high": 425.53,
+        "low": 425.37,
+        "close": 425.47,
+        "open": 425.42
+      },
+      "cisd_bar": {
+        "ts": "2024-04-23T19:11:00+00:00",
+        "close": 425.69,
+        "open": 425.55,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-04-23T19:11:00+00:00",
+        "upper": 425.69,
+        "lower": 425.46000000000004,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 425.825,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-04-29T14:00:00+00:00",
+      "exit_ts": "2024-04-29T14:22:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "431.8",
+      "exit_price": "432.74199999999996",
+      "exit_reason": "target_hit",
+      "pnl": "0.94199999999996",
+      "arming_bar_ts": "2024-04-29 13:59:00+00:00",
+      "arming_bar_iso": "2024-04-29T13:59:00+00:00",
+      "entry_price": 431.8,
+      "stop_price": 431.01500000000004,
+      "take_profit": 432.74199999999996,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-04-29T13:53:00+00:00",
+        "high": 431.1984,
+        "low": 430.91,
+        "close": 431.07,
+        "open": 431.19
+      },
+      "cisd_bar": {
+        "ts": "2024-04-29T13:59:00+00:00",
+        "close": 431.8,
+        "open": 431.61,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-04-29T13:59:00+00:00",
+        "upper": 431.8,
+        "lower": 431.55,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 432.33500000000004,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-03T14:29:00+00:00",
+      "exit_ts": "2024-05-03T15:09:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "434.25",
+      "exit_price": "433.13",
+      "exit_reason": "stop_out",
+      "pnl": "-1.12",
+      "arming_bar_ts": "2024-05-03 14:28:00+00:00",
+      "arming_bar_iso": "2024-05-03T14:28:00+00:00",
+      "entry_price": 434.25,
+      "stop_price": 433.13,
+      "take_profit": 435.594,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-05-03T14:20:00+00:00",
+        "high": 433.9,
+        "low": 432.62,
+        "close": 433.29,
+        "open": 433.73
+      },
+      "cisd_bar": {
+        "ts": "2024-05-03T14:28:00+00:00",
+        "close": 434.25,
+        "open": 433.62,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-03T14:28:00+00:00",
+        "upper": 434.25,
+        "lower": 433.54,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 434.55,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-06T18:48:00+00:00",
+      "exit_ts": "2024-05-06T18:55:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "438.98",
+      "exit_price": "439.184",
+      "exit_reason": "target_hit",
+      "pnl": "0.204",
+      "arming_bar_ts": "2024-05-06 18:47:00+00:00",
+      "arming_bar_iso": "2024-05-06T18:47:00+00:00",
+      "entry_price": 438.98,
+      "stop_price": 438.81,
+      "take_profit": 439.184,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-05-06T18:37:00+00:00",
+        "high": 438.95,
+        "low": 438.79,
+        "close": 438.87,
+        "open": 438.95
+      },
+      "cisd_bar": {
+        "ts": "2024-05-06T18:47:00+00:00",
+        "close": 438.98,
+        "open": 438.9301,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-06T18:47:00+00:00",
+        "upper": 438.98,
+        "lower": 438.86,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 439.03499999999997,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-07T18:45:00+00:00",
+      "exit_ts": "2024-05-07T19:50:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "440.18",
+      "exit_price": "440.80199999999996",
+      "exit_reason": "target_hit",
+      "pnl": "0.62199999999996",
+      "arming_bar_ts": "2024-05-07 18:44:00+00:00",
+      "arming_bar_iso": "2024-05-07T18:44:00+00:00",
+      "entry_price": 440.19,
+      "stop_price": 439.68,
+      "take_profit": 440.80199999999996,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "BULLISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-05-07T18:34:00+00:00",
+        "high": 439.84,
+        "low": 439.64,
+        "close": 439.795,
+        "open": 439.764
+      },
+      "cisd_bar": {
+        "ts": "2024-05-07T18:44:00+00:00",
+        "close": 440.19,
+        "open": 440.15,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-07T18:44:00+00:00",
+        "upper": 440.19,
+        "lower": 440.1,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 440.19,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-09T18:27:00+00:00",
+      "exit_ts": "2024-05-09T18:31:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "440.89",
+      "exit_price": "441.1869999999999",
+      "exit_reason": "target_hit",
+      "pnl": "0.2969999999999",
+      "arming_bar_ts": "2024-05-09 18:26:00+00:00",
+      "arming_bar_iso": "2024-05-09T18:26:00+00:00",
+      "entry_price": 440.905,
+      "stop_price": 440.67,
+      "take_profit": 441.1869999999999,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "BULLISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-05-09T18:15:00+00:00",
+        "high": 440.755,
+        "low": 440.62,
+        "close": 440.71,
+        "open": 440.71
+      },
+      "cisd_bar": {
+        "ts": "2024-05-09T18:26:00+00:00",
+        "close": 440.905,
+        "open": 440.74,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-09T18:26:00+00:00",
+        "upper": 440.905,
+        "lower": 440.72,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 440.93,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-10T15:14:00+00:00",
+      "exit_ts": "2024-05-10T15:37:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "441.55",
+      "exit_price": "441.16",
+      "exit_reason": "stop_out",
+      "pnl": "-0.39",
+      "arming_bar_ts": "2024-05-10 15:13:00+00:00",
+      "arming_bar_iso": "2024-05-10T15:13:00+00:00",
+      "entry_price": 441.55,
+      "stop_price": 441.16,
+      "take_profit": 442.018,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "BULLISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-05-10T15:07:00+00:00",
+        "high": 441.43,
+        "low": 441.17,
+        "close": 441.27,
+        "open": 441.38
+      },
+      "cisd_bar": {
+        "ts": "2024-05-10T15:13:00+00:00",
+        "close": 441.55,
+        "open": 441.4,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-10T15:13:00+00:00",
+        "upper": 441.55,
+        "lower": 441.29,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 441.6575,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-15T18:40:00+00:00",
+      "exit_ts": "2024-05-15T18:45:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "452.7099",
+      "exit_price": "452.44",
+      "exit_reason": "stop_out",
+      "pnl": "-0.2699",
+      "arming_bar_ts": "2024-05-15 18:39:00+00:00",
+      "arming_bar_iso": "2024-05-15T18:39:00+00:00",
+      "entry_price": 452.71,
+      "stop_price": 452.44,
+      "take_profit": 453.03399999999993,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-05-15T18:32:00+00:00",
+        "high": 452.53,
+        "low": 452.42,
+        "close": 452.52,
+        "open": 452.4947
+      },
+      "cisd_bar": {
+        "ts": "2024-05-15T18:39:00+00:00",
+        "close": 452.71,
+        "open": 452.625,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-15T18:39:00+00:00",
+        "upper": 452.71,
+        "lower": 452.6,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 452.73,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-16T17:33:00+00:00",
+      "exit_ts": "2024-05-16T17:36:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "453.3099",
+      "exit_price": "453.04",
+      "exit_reason": "stop_out",
+      "pnl": "-0.2699",
+      "arming_bar_ts": "2024-05-16 17:32:00+00:00",
+      "arming_bar_iso": "2024-05-16T17:32:00+00:00",
+      "entry_price": 453.31,
+      "stop_price": 453.04,
+      "take_profit": 453.63399999999996,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "BULLISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-05-16T17:25:00+00:00",
+        "high": 453.13,
+        "low": 452.55,
+        "close": 453.0801,
+        "open": 452.77
+      },
+      "cisd_bar": {
+        "ts": "2024-05-16T17:32:00+00:00",
+        "close": 453.31,
+        "open": 453.23,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-16T17:32:00+00:00",
+        "upper": 453.31,
+        "lower": 453.21000000000004,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 453.385,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-16T18:34:00+00:00",
+      "exit_ts": "2024-05-16T19:03:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "452.95",
+      "exit_price": "453.21291999999994",
+      "exit_reason": "target_hit",
+      "pnl": "0.26291999999994",
+      "arming_bar_ts": "2024-05-16 18:33:00+00:00",
+      "arming_bar_iso": "2024-05-16T18:33:00+00:00",
+      "entry_price": 452.95,
+      "stop_price": 452.7309,
+      "take_profit": 453.21291999999994,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "BULLISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-05-16T18:25:00+00:00",
+        "high": 452.92,
+        "low": 452.8,
+        "close": 452.85,
+        "open": 452.915
+      },
+      "cisd_bar": {
+        "ts": "2024-05-16T18:33:00+00:00",
+        "close": 452.95,
+        "open": 452.82,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-16T18:33:00+00:00",
+        "upper": 452.95,
+        "lower": 452.79,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 453.17,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-20T17:46:00+00:00",
+      "exit_ts": "2024-05-20T17:53:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "454.55",
+      "exit_price": "454.35",
+      "exit_reason": "stop_out",
+      "pnl": "-0.20",
+      "arming_bar_ts": "2024-05-20 17:45:00+00:00",
+      "arming_bar_iso": "2024-05-20T17:45:00+00:00",
+      "entry_price": 454.57,
+      "stop_price": 454.35,
+      "take_profit": 454.83399999999995,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-05-20T17:39:00+00:00",
+        "high": 454.44,
+        "low": 454.33,
+        "close": 454.37,
+        "open": 454.36
+      },
+      "cisd_bar": {
+        "ts": "2024-05-20T17:45:00+00:00",
+        "close": 454.57,
+        "open": 454.4997,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-20T17:45:00+00:00",
+        "upper": 454.57,
+        "lower": 454.47950000000003,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 454.90999999999997,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-22T18:47:00+00:00",
+      "exit_ts": "2024-05-22T18:48:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "453.63",
+      "exit_price": "454.014",
+      "exit_reason": "target_hit",
+      "pnl": "0.384",
+      "arming_bar_ts": "2024-05-22 18:46:00+00:00",
+      "arming_bar_iso": "2024-05-22T18:46:00+00:00",
+      "entry_price": 453.63,
+      "stop_price": 453.31,
+      "take_profit": 454.014,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "BULLISH_DIVERGENCE",
+      "sweep_bar": {
+        "ts": "2024-05-22T18:37:00+00:00",
+        "high": 453.69,
+        "low": 453.1951,
+        "close": 453.3,
+        "open": 453.5
+      },
+      "cisd_bar": {
+        "ts": "2024-05-22T18:46:00+00:00",
+        "close": 453.63,
+        "open": 453.47,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-22T18:46:00+00:00",
+        "upper": 453.63,
+        "lower": 453.45000000000005,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 454.04255,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-05-30T17:48:00+00:00",
+      "exit_ts": "2024-05-30T18:04:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "454.16",
+      "exit_price": "453.72648",
+      "exit_reason": "target_hit",
+      "pnl": "0.43352",
+      "arming_bar_ts": "2024-05-30 17:47:00+00:00",
+      "arming_bar_iso": "2024-05-30T17:47:00+00:00",
+      "entry_price": 454.143,
+      "stop_price": 454.4901,
+      "take_profit": 453.72648,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-05-30T17:32:00+00:00",
+        "high": 454.5,
+        "low": 454.405,
+        "close": 454.4199,
+        "open": 454.405
+      },
+      "cisd_bar": {
+        "ts": "2024-05-30T17:47:00+00:00",
+        "close": 454.143,
+        "open": 454.265,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-05-30T17:47:00+00:00",
+        "upper": 454.31,
+        "lower": 454.143,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 454.06,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-06-11T19:42:00+00:00",
+      "exit_ts": "2024-06-11T19:50:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "467.055",
+      "exit_price": "466.78650000000005",
+      "exit_reason": "stop_out",
+      "pnl": "-0.26849999999995",
+      "arming_bar_ts": "2024-06-11 19:41:00+00:00",
+      "arming_bar_iso": "2024-06-11T19:41:00+00:00",
+      "entry_price": 467.0699,
+      "stop_price": 466.78650000000005,
+      "take_profit": 467.40997999999996,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-06-11T19:28:00+00:00",
+        "high": 466.92,
+        "low": 466.81,
+        "close": 466.89,
+        "open": 466.91
+      },
+      "cisd_bar": {
+        "ts": "2024-06-11T19:41:00+00:00",
+        "close": 467.0699,
+        "open": 466.96,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-06-11T19:41:00+00:00",
+        "upper": 467.0699,
+        "lower": 466.92,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 467.175,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-06-20T19:38:00+00:00",
+      "exit_ts": "2024-06-20T19:44:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "481.14",
+      "exit_price": "481.66999999999996",
+      "exit_reason": "stop_out",
+      "pnl": "-0.52999999999996",
+      "arming_bar_ts": "2024-06-20 19:37:00+00:00",
+      "arming_bar_iso": "2024-06-20T19:37:00+00:00",
+      "entry_price": 481.13,
+      "stop_price": 481.66999999999996,
+      "take_profit": 480.482,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-06-20T19:33:00+00:00",
+        "high": 481.53,
+        "low": 481.25,
+        "close": 481.43,
+        "open": 481.26
+      },
+      "cisd_bar": {
+        "ts": "2024-06-20T19:37:00+00:00",
+        "close": 481.13,
+        "open": 481.21,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-06-20T19:37:00+00:00",
+        "upper": 481.2899,
+        "lower": 481.13,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 480.615,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-06-21T13:22:00+00:00",
+      "exit_ts": "2024-06-21T13:22:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "481.64",
+      "exit_price": "481.71999999999997",
+      "exit_reason": "stop_out",
+      "pnl": "-0.07999999999997",
+      "arming_bar_ts": "2024-06-21 13:21:00+00:00",
+      "arming_bar_iso": "2024-06-21T13:21:00+00:00",
+      "entry_price": 481.61,
+      "stop_price": 481.71999999999997,
+      "take_profit": 481.47800000000007,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-06-21T13:15:00+00:00",
+        "high": 481.7,
+        "low": 481.52,
+        "close": 481.59,
+        "open": 481.67
+      },
+      "cisd_bar": {
+        "ts": "2024-06-21T13:21:00+00:00",
+        "close": 481.61,
+        "open": 481.58,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-06-21T13:21:00+00:00",
+        "upper": 481.7,
+        "lower": 481.61,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 481.4,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-06-24T15:26:00+00:00",
+      "exit_ts": "2024-06-24T15:39:00+00:00",
+      "side": "SELL",
+      "entry_price_fill": "477.47",
+      "exit_price": "478.16999999999996",
+      "exit_reason": "stop_out",
+      "pnl": "-0.69999999999996",
+      "arming_bar_ts": "2024-06-24 15:25:00+00:00",
+      "arming_bar_iso": "2024-06-24T15:25:00+00:00",
+      "entry_price": 477.45,
+      "stop_price": 478.16999999999996,
+      "take_profit": 476.586,
+      "bias_direction": "SHORT",
+      "htf_bias_at_entry": "SHORT",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-06-24T15:13:00+00:00",
+        "high": 478.0,
+        "low": 477.745,
+        "close": 477.93,
+        "open": 477.83
+      },
+      "cisd_bar": {
+        "ts": "2024-06-24T15:25:00+00:00",
+        "close": 477.45,
+        "open": 477.47,
+        "body_close_up": false,
+        "body_close_down": true
+      },
+      "ifvg_zone": {
+        "ts": "2024-06-24T15:25:00+00:00",
+        "upper": 477.68,
+        "lower": 477.45,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 476.885,
+      "in_discount_long": null,
+      "in_premium_short": true
+    },
+    {
+      "entry_ts": "2024-06-27T14:12:00+00:00",
+      "exit_ts": "2024-06-27T14:14:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "482.25",
+      "exit_price": "482.788",
+      "exit_reason": "target_hit",
+      "pnl": "0.538",
+      "arming_bar_ts": "2024-06-27 14:11:00+00:00",
+      "arming_bar_iso": "2024-06-27T14:11:00+00:00",
+      "entry_price": 482.26,
+      "stop_price": 481.82,
+      "take_profit": 482.788,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-06-27T14:02:00+00:00",
+        "high": 482.35,
+        "low": 481.78,
+        "close": 482.154,
+        "open": 481.86
+      },
+      "cisd_bar": {
+        "ts": "2024-06-27T14:11:00+00:00",
+        "close": 482.26,
+        "open": 481.8592,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-06-27T14:11:00+00:00",
+        "upper": 482.26,
+        "lower": 481.8392,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 482.27,
+      "in_discount_long": true,
+      "in_premium_short": null
+    },
+    {
+      "entry_ts": "2024-06-28T15:22:00+00:00",
+      "exit_ts": "2024-06-28T15:26:00+00:00",
+      "side": "BUY",
+      "entry_price_fill": "483.51",
+      "exit_price": "482.83000000000004",
+      "exit_reason": "stop_out",
+      "pnl": "-0.67999999999996",
+      "arming_bar_ts": "2024-06-28 15:21:00+00:00",
+      "arming_bar_iso": "2024-06-28T15:21:00+00:00",
+      "entry_price": 483.51,
+      "stop_price": 482.83000000000004,
+      "take_profit": 484.3259999999999,
+      "bias_direction": "LONG",
+      "htf_bias_at_entry": "LONG",
+      "smt_at_entry": "NONE",
+      "sweep_bar": {
+        "ts": "2024-06-28T15:07:00+00:00",
+        "high": 483.32,
+        "low": 482.92,
+        "close": 483.15,
+        "open": 483.09
+      },
+      "cisd_bar": {
+        "ts": "2024-06-28T15:21:00+00:00",
+        "close": 483.51,
+        "open": 483.41,
+        "body_close_up": true,
+        "body_close_down": false
+      },
+      "ifvg_zone": {
+        "ts": "2024-06-28T15:21:00+00:00",
+        "upper": 483.51,
+        "lower": 483.2705,
+        "tol_ticks": 2,
+        "tol_offset": 0.02
+      },
+      "fib_0_5_of_sweep_range": 484.33500000000004,
+      "in_discount_long": true,
+      "in_premium_short": null
+    }
+  ]
+}

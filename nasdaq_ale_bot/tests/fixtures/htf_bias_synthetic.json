@@ -1,0 +1,14 @@
+{
+  "_description": "Synthetic 4H bar series pinned for §3.3 off-by-one pre-mortem. The detector must stay at PENDING after bar 0 (break), return to INACTIVE after bar 1 (opposite), then re-arm to PENDING after bar 2 (same-side break again). FVG seeds precede index 0.",
+  "fvg_seed_bars_4h": [
+    {"idx": -3, "open": 95.0,  "high": 100.0, "low": 94.0,  "close": 99.0},
+    {"idx": -2, "open": 99.0,  "high": 108.0, "low": 98.0,  "close": 107.0},
+    {"idx": -1, "open": 106.0, "high": 110.0, "low": 105.0, "close": 109.0}
+  ],
+  "expected_fvg": {"direction": "UP", "bottom": 100.0, "top": 105.0},
+  "scenario_bars_4h": [
+    {"idx": 0, "open": 96.0,  "high": 97.0,  "low": 93.0,  "close": 94.0,  "expected_flip_state": "PENDING",  "note": "bearish body-close break of UP FVG"},
+    {"idx": 1, "open": 106.0, "high": 111.0, "low": 104.0, "close": 110.0, "expected_flip_state": "INACTIVE", "note": "opposite body above gap, no re-break"},
+    {"idx": 2, "open": 97.0,  "high": 98.0,  "low": 92.0,  "close": 94.0,  "expected_flip_state": "PENDING",  "note": "same-side break again, pending re-armed"}
+  ]
+}

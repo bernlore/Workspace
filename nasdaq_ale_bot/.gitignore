@@ -1,0 +1,15 @@
+.env
+*.env
+.env.local
+__pycache__/
+.pytest_cache/
+.omc/
+*.parquet
+data/historical/*.parquet
+# data/historical/manifest.json is intentionally committed
+htmlcov/
+.coverage
+.mypy_cache/
+dist/
+build/
+*.egg-info/

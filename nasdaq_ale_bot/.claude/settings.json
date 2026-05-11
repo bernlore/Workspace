@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(touch c:/Users/Bernd/Workspace/nasdaq_ale_bot*)",
+      "Bash(cd c:/Users/Bernd/Workspace/nasdaq_ale_bot*)",
+      "Bash(python -m pytest *)",
+      "Bash(python -m ruff *)",
+      "Bash(touch * && cd * && python *)",
+      "Bash(cd * && grep *)",
+      "Bash(cd * && python *)"
+      
+    ]
+  }
+}

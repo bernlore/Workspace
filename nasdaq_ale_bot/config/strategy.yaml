@@ -1,0 +1,84 @@
+risk:
+  mode: fixed          # fixed | percent
+  fixed_usd: 750
+  percent: 0.005
+
+killzone:
+  primary:
+    start: "09:30"
+    end:   "11:00"
+  secondary:
+    start: "13:30"
+    end:   "15:45"
+
+rr:
+  floor:  1.1
+  target: 1.2
+  cap:    1.3
+
+max_stop_nq_pts: 25
+daily_loss_limit: -1500
+max_trades_per_day: 2
+
+cisd:
+  lookback_bars: 20
+  confirm_window: 15
+
+sweep:
+  min_penetration_ticks: 2
+
+news:
+  window_seconds: 900
+
+# Trend-strength regime filter — disables trading when the 10-day directional
+# efficiency (|net_move| / avg_daily_range) exceeds the threshold. A ratio of
+# 3.0 means: net move is more than 3× the average daily range = straight-line
+# trend, no pullbacks for ICT setups. Volatility-normalised, so works across
+# instruments with different ADR profiles. Fail-opens for the first 10 days.
+trend_filter_efficiency_ratio: 3.0
+
+# ---------------------------------------------------------------------------
+# Apex Trader Funded compliance layer (Phase 5).
+# Default: disabled. Phase 2-4 behavior is UNCHANGED when enabled=false.
+# See PLAN.md §5.A and ASSUMPTIONS.md A25-A30.
+# ---------------------------------------------------------------------------
+apex_mode:
+  enabled: false
+
+  # A25 — hard daily loss cap (replaces base -1500 when enabled)
+  daily_loss_usd: -1000
+
+  # A26 — trailing drawdown from high-water mark equity (continuous)
+  trailing_dd_usd: 2500
+  trailing_dd_warn_headroom_usd: 200
+
+  # A27 — profit target + 30-calendar-day window
+  profit_target_usd: 3000
+  profit_window_days: 30
+
+  # A28 — consistency rule (dormant until 50% of profit target)
+  consistency_best_day_ratio_max: 0.30
+  consistency_activation_ratio: 0.50
+
+  # A29 — scaling plan: contract cap by account equity threshold (50k plan)
+  scaling_plan:
+    - balance_ge: 50000
+      max_contracts: 2
+    - balance_ge: 52500
+      max_contracts: 4
+    - balance_ge: 55000
+      max_contracts: 10
+
+  # A30 — primary instrument override (MNQ futures, no QQQ proxy)
+  primary_symbol: MNQ
+  # Correlated symbol for SMT divergence (read-only, never traded).
+  # Default ES (full E-mini S&P) for deep liquidity / clean wicks.
+  # MES is a valid alternative but wicks are noisier — opt-in only.
+  correlated_symbol: ES
+
+  # Realtime equity polling cadence for HWM/trailing-DD tracking
+  equity_poll_interval_seconds: 1
+  equity_snapshot_stale_seconds: 60
+
+  # Persisted state location (account-death flag, profit window start)
+  state_file: .omc/state/apex_account_state.json

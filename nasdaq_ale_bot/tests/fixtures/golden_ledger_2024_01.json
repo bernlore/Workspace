@@ -1,0 +1,12 @@
+{
+  "equity_curve_last": "10000",
+  "equity_curve_len": 12,
+  "ledger": {
+    "cumulative_profit": "0",
+    "current_equity": "10000",
+    "high_watermark_equity": "10000",
+    "realized_today": "0"
+  },
+  "param_set_hash": "7c2f45fbeb3e1a9078b78bc20fb4984b2702343b0e88639629eae100bc1a9f57",
+  "trades": []
+}
