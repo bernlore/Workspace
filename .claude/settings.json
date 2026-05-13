@@ -1,13 +1,26 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cd c:/Users/Bernd/Workspace/nasdaq_ale_bot*)",
-      "Bash(touch c:/Users/Bernd/Workspace/nasdaq_ale_bot*)",
-      "Bash(python -m ruff check *)",
-      "Bash(python -m pytest *)",
       "Bash(python *)",
-      "Bash(touch * && cd * && python *)",
-      "Bash(cd * && grep *)"
+      "Bash(python3 *)",
+      "Bash(pytest *)",
+      "Bash(python -m pytest *)",
+      "Bash(python3 -m pytest *)",
+      "Bash(ruff *)",
+      "Bash(python -m ruff *)",
+      "Bash(python3 -m ruff *)",
+      "Bash(mypy *)",
+      "Bash(python -m mypy *)",
+      "Bash(python3 -m mypy *)",
+      "Bash(pip *)",
+      "Bash(pip3 *)",
+      "Bash(python -m pip *)",
+      "Bash(python3 -m pip *)",
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(bash *)",
+      "Bash(sh *)"
     ]
   }
 }

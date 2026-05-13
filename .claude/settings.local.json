@@ -48,7 +48,9 @@
       "Bash(python -m pytest tests/unit tests/integration -q --tb=short)",
       "Bash(python -m pytest tests/unit/test_mock_broker.py --cov=nasdaq_ale_bot.execution.mock_broker --cov-branch --cov-report=term-missing --cov-fail-under=100 -q)",
       "Bash(python -m pytest tests/ --tb=short -q)",
-      "Bash(python -c \"from nasdaq_ale_bot.backtest.runner import BacktestRunner, BacktestResult, TradeRecord; print\\('imports OK'\\)\")"
+      "Bash(python -c \"from nasdaq_ale_bot.backtest.runner import BacktestRunner, BacktestResult, TradeRecord; print\\('imports OK'\\)\")",
+      "Bash(git clone *)",
+      "Bash(bash install.sh)"
     ],
     "additionalDirectories": [
       "C:\\Users\\Bernd\\.claude",
