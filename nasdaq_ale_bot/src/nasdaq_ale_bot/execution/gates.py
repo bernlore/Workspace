@@ -194,6 +194,11 @@ class GateList:
                 ),
             ),
         ]
+        if bool(config.get("ml_regime_gate_enabled", False)):
+            ml_csv = config.get("ml_regime_predictions_csv")
+            gates.append(
+                MLRegimeGate(csv_path=Path(ml_csv) if ml_csv else None)
+            )
         return cls(gates)
 
 
@@ -482,6 +487,70 @@ class TrendRegimeGate:
                 allowed=False,
                 gate_name=self.name,
                 reason="SKIP_TREND_REGIME",
+            )
+        return GateResult(allowed=True, gate_name=self.name, reason=None)
+
+
+class MLRegimeGate:
+    """Block trading when the session-level ML classifier predicts no positive trade.
+
+    Phase 3.5 deliverable. Reads a precomputed predictions CSV
+    (``data/ml_session_predictions.csv``) with columns ``ny_date, ml_predict``
+    where ``ml_predict`` ∈ {0, 1}. The gate looks up the NY-date for
+    ``intent.ts_utc`` and rejects iff the prediction equals 0.
+
+    Fail-open semantics:
+      * predictions CSV missing → allow (gate is effectively a no-op).
+      * NY-date not in the CSV → allow (out-of-coverage dates are not
+        the model's call to make).
+      * Any parse error → allow + log a warning once.
+
+    The gate caches the CSV in a class-level dict keyed by path so repeated
+    construction in tests does not re-read the file.
+    """
+
+    name = "MLRegimeGate"
+    _cache: dict[Path, dict[str, int]] = {}
+
+    def __init__(self, *, csv_path: Path | None = None) -> None:
+        self._csv_path = csv_path or Path("data/ml_session_predictions.csv")
+        self._lookup = self._load(self._csv_path)
+
+    @classmethod
+    def _load(cls, path: Path) -> dict[str, int]:
+        if path in cls._cache:
+            return cls._cache[path]
+        if not path.exists():
+            cls._cache[path] = {}
+            return {}
+        try:
+            import csv as _csv
+            out: dict[str, int] = {}
+            with path.open() as fh:
+                reader = _csv.DictReader(fh)
+                for row in reader:
+                    out[row["ny_date"]] = int(row["ml_predict"])
+            cls._cache[path] = out
+            return out
+        except Exception as exc:  # noqa: BLE001
+            _log.warning("ml_regime_csv_load_failed", path=str(path), error=str(exc))
+            cls._cache[path] = {}
+            return {}
+
+    def check(self, ledger: AccountLedger, intent: TradeIntent) -> GateResult:
+        if not self._lookup:
+            return GateResult(allowed=True, gate_name=self.name, reason=None)
+        from zoneinfo import ZoneInfo
+
+        ny_date = intent.ts_utc.astimezone(ZoneInfo("America/New_York")).date()
+        pred = self._lookup.get(str(ny_date))
+        if pred is None:
+            return GateResult(allowed=True, gate_name=self.name, reason=None)
+        if pred == 0:
+            return GateResult(
+                allowed=False,
+                gate_name=self.name,
+                reason="SKIP_ML_REGIME",
             )
         return GateResult(allowed=True, gate_name=self.name, reason=None)
 

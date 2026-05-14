@@ -56,11 +56,11 @@ def main() -> int:
     correlated = instruments_cfg.correlated
     log.info("primary=%s correlated=%s", primary.symbol, correlated.symbol)
 
-    nq_path = DATA_DIR / "NQ_1min_2022_2025.csv"
-    es_path = DATA_DIR / "mes1123.csv"
+    nq_path = DATA_DIR / "NQ_1m_2022_2026.dbn.zst"
+    es_path = DATA_DIR / "ES_1m_2022_2026.dbn.zst"
     log.info("loading bars %s + %s", nq_path.name, es_path.name)
-    qqq_bars = BacktestRunner.load_bars_from_nq_csv(nq_path)
-    spy_bars = BacktestRunner.load_bars_from_databento_csv(es_path, symbol_prefix="ES")
+    qqq_bars = BacktestRunner.load_bars_from_dbn(nq_path, symbol_prefix="NQ")
+    spy_bars = BacktestRunner.load_bars_from_dbn(es_path, symbol_prefix="ES")
     log.info("loaded NQ=%d ES=%d bars", len(qqq_bars), len(spy_bars))
 
     strategy_cfg["_bias_detector"] = HTFBiasDetector(primary)

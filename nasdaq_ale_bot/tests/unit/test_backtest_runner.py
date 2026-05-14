@@ -977,8 +977,15 @@ def test_exit_fill_without_open_entry_is_logged(caplog) -> None:
     assert len(runner._trades) == 0  # noqa: SLF001
 
 
-def test_correlated_bars_shorter_than_primary_pads_last() -> None:
-    """When bars_correlated is shorter than bars_primary, runner pads with last."""
+def test_correlated_bars_shorter_than_primary_passes_none() -> None:
+    """When a primary bar has no correlated bar at the same ts, pass None.
+
+    The timestamp-keyed join (runner._correlated_lookup) returns None for any
+    primary ts that isn't present in bars_correlated. The SMT tracker treats
+    missing bars via its forward-fill / UNAVAILABLE rules (§A13); padding
+    with the stale last bar (old behavior) caused the tracker to latch
+    UNAVAILABLE incorrectly across long gaps.
+    """
     bars_primary = [mk_candle(i) for i in range(5)]
     bars_correlated = [mk_candle(i, open_=300.0, close=300.0) for i in range(2)]
 
@@ -997,10 +1004,12 @@ def test_correlated_bars_shorter_than_primary_pads_last() -> None:
     )
     runner.run()
 
-    # 5 calls total (pads last 3 with bars_correlated[-1]).
     assert mock_smt.on_1m_bar_pair.call_count == 5
-    last_call = mock_smt.on_1m_bar_pair.call_args_list[-1]
-    assert last_call.kwargs["correlated_bar"] == bars_correlated[-1]
+    calls = mock_smt.on_1m_bar_pair.call_args_list
+    assert calls[0].kwargs["correlated_bar"] == bars_correlated[0]
+    assert calls[1].kwargs["correlated_bar"] == bars_correlated[1]
+    for call in calls[2:]:
+        assert call.kwargs["correlated_bar"] is None
 
 
 def test_correlated_ts_mismatch_warning(caplog) -> None:

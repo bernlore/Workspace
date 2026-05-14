@@ -184,6 +184,12 @@ class BacktestRunner:
         # Sort bars by ts to enforce pre-sorted invariant.
         self._bars_primary: list[Candle] = sorted(bars_primary, key=lambda b: b.ts)
         self._bars_correlated: list[Candle] | None = bars_correlated
+        # Timestamp-keyed lookup so SMT receives the ES bar that actually
+        # matches the current NQ bar's UTC minute (positional indexing drifts
+        # whenever the two feeds have non-identical missing-minute patterns).
+        self._correlated_lookup: dict[datetime, Candle] = (
+            {b.ts: b for b in bars_correlated} if bars_correlated else {}
+        )
         self._mock_broker = mock_broker
         self._ledger = ledger
         self._strategy_cfg = strategy_cfg
@@ -324,35 +330,28 @@ class BacktestRunner:
         return candles
 
     @staticmethod
-    def load_bars_from_databento_csv(
-        path: Path, symbol_prefix: str = "ES"
-    ) -> list[Candle]:
-        """Load a Databento OHLCV-1m CSV containing multiple contracts.
+    def load_bars_from_dbn(path: Path, symbol_prefix: str) -> list[Candle]:
+        """Load a Databento DBN/DBN.ZST file into a list of Candle objects.
 
-        Schema (Databento): ts_event, rtype, publisher, instrument, open, high,
-        low, close, volume, symbol.
-
-        Filters:
+        Filters to outright front-month contracts:
           1. Keep only rows whose ``symbol`` starts with ``symbol_prefix`` AND
-             does NOT contain ``-`` (excludes calendar spreads like ``ESH4-ESM4``).
+             does NOT contain ``-`` (excludes calendar spreads).
           2. Per timestamp, keep the row with the highest volume — proxies the
              front-month contract without an explicit roll calendar.
 
-        ``ts_event`` is parsed as a UTC tz-aware datetime. Use
-        ``symbol_prefix='ES'`` to filter ES outrights from a mixed ES/MES file
-        ('MES' starts with M so the prefix check excludes it).
+        The DBN DataFrame index is ``ts_event`` (UTC tz-aware).
+        OHLCV values are already floats in the databento-dbn format.
         """
-        import pandas as pd
+        import databento as db
 
-        df = pd.read_csv(
-            path,
-            usecols=["ts_event", "open", "high", "low", "close", "volume", "symbol"],
-        )
+        store = db.DBNStore.from_file(path)
+        df = store.to_df()
         if df.empty:
-            raise ValueError(f"Databento CSV contains zero rows: {path}")
-        mask = df["symbol"].str.startswith(symbol_prefix) & ~df["symbol"].str.contains(
-            "-", regex=False
-        )
+            raise ValueError(f"DBN file contains zero rows: {path}")
+        df = df.reset_index()  # ts_event becomes a column
+        mask = df["symbol"].str.startswith(symbol_prefix, na=False) & ~df[
+            "symbol"
+        ].str.contains("-", na=False, regex=False)
         df = df[mask]
         if df.empty:
             raise ValueError(
@@ -360,81 +359,11 @@ class BacktestRunner:
             )
         df = df.sort_values(["ts_event", "volume"], ascending=[True, False])
         df = df.drop_duplicates(subset=["ts_event"], keep="first")
-        df = df.reset_index(drop=True)
-        ts_utc = pd.to_datetime(df["ts_event"], utc=True)
         candles: list[Candle] = []
-        for ts, o, h, lo, c, v in zip(
-            ts_utc,
-            df["open"].astype(float),
-            df["high"].astype(float),
-            df["low"].astype(float),
-            df["close"].astype(float),
-            df["volume"].astype(float),
-        ):
+        for row in df.itertuples(index=False):
             candles.append(
                 Candle(
-                    ts=ts.to_pydatetime(),
-                    open=float(o),
-                    high=float(h),
-                    low=float(lo),
-                    close=float(c),
-                    volume=float(v),
-                )
-            )
-        return candles
-
-    @staticmethod
-    def load_bars_from_nq_csv(path: Path) -> list[Candle]:
-        """Load a Kaggle-style NQ 1m CSV (timestamps in America/New_York).
-
-        Expected columns:
-            ``timestamp ET, open, high, low, close, volume, ...``
-        ``timestamp ET`` is parsed as ``%m/%d/%Y %H:%M`` in NY local time and
-        converted to UTC tz-aware datetimes (DST-aware via zoneinfo).
-        Extra columns (Vwap_RTH/Vwap_ETH/etc.) are ignored. Rows are
-        deduplicated on timestamp and sorted ascending.
-        """
-        from zoneinfo import ZoneInfo
-
-        import pandas as pd
-
-        df = pd.read_csv(path)
-        if df.empty:
-            raise ValueError(f"NQ CSV contains zero rows: {path}")
-        if "timestamp ET" not in df.columns:
-            raise ValueError(
-                f"Expected 'timestamp ET' column in {path}, got {list(df.columns)}"
-            )
-        ts_naive = pd.to_datetime(df["timestamp ET"], format="%m/%d/%Y %H:%M")
-        # Localize to NY (DST-aware), then convert to UTC.
-        # ambiguous='NaT' / nonexistent='shift_forward' guards against the two DST edge cases.
-        ts_ny = ts_naive.dt.tz_localize(
-            ZoneInfo("America/New_York"),
-            ambiguous="NaT",
-            nonexistent="shift_forward",
-        )
-        ts_utc = ts_ny.dt.tz_convert("UTC")
-        out = pd.DataFrame(
-            {
-                "ts_utc": ts_utc,
-                "open": df["open"].astype(float),
-                "high": df["high"].astype(float),
-                "low": df["low"].astype(float),
-                "close": df["close"].astype(float),
-                "volume": df["volume"].astype(float),
-            }
-        )
-        out = out.dropna(subset=["ts_utc"])
-        out = (
-            out.drop_duplicates(subset=["ts_utc"], keep="first")
-            .sort_values("ts_utc")
-            .reset_index(drop=True)
-        )
-        candles: list[Candle] = []
-        for row in out.itertuples(index=False):
-            candles.append(
-                Candle(
-                    ts=row.ts_utc.to_pydatetime(),
+                    ts=row.ts_event.to_pydatetime(),
                     open=float(row.open),
                     high=float(row.high),
                     low=float(row.low),
@@ -702,27 +631,17 @@ class BacktestRunner:
                 )
 
     def _feed_correlated_bar(self, primary_bar: Candle, i: int) -> None:
-        """Feed correlated bar to SMTTracker before SM processes primary bar."""
-        # Access SM's internal smt_tracker reference (runner wired it in __init__).
+        """Feed correlated bar to SMTTracker before SM processes primary bar.
+
+        Joins by UTC timestamp: looks up the correlated bar whose ts matches
+        the primary bar's ts. If absent, passes None — the SMT tracker treats
+        a missing bar via its forward-fill / UNAVAILABLE rules (§A13).
+        """
         smt = self._state_machine._smt_tracker  # noqa: SLF001
         if smt is None or self._bars_correlated is None:
             return
 
-        # Pad with last available bar if correlated list is shorter than primary.
-        if i < len(self._bars_correlated):
-            corr_bar = self._bars_correlated[i]
-        elif self._bars_correlated:
-            corr_bar = self._bars_correlated[-1]
-        else:
-            return
-
-        if corr_bar.ts != primary_bar.ts:
-            _log.warning(
-                "correlated_bar_ts_mismatch",
-                primary_ts=primary_bar.ts.isoformat(),
-                correlated_ts=corr_bar.ts.isoformat(),
-                index=i,
-            )
+        corr_bar = self._correlated_lookup.get(primary_bar.ts)
 
         try:
             smt.on_1m_bar_pair(

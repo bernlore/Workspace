@@ -44,11 +44,11 @@ MAX_TRADES_PER_DAY = 2
 
 
 def replay_full_window():
-    nq = BacktestRunner.load_bars_from_nq_csv(
-        REPO / "data" / "historical" / "NQ_1min_2022_2025.csv"
+    nq = BacktestRunner.load_bars_from_dbn(
+        REPO / "data" / "historical" / "NQ_1m_2022_2026.dbn.zst", symbol_prefix="NQ"
     )
-    es = BacktestRunner.load_bars_from_databento_csv(
-        REPO / "data" / "historical" / "mes1123.csv", symbol_prefix="ES"
+    es = BacktestRunner.load_bars_from_dbn(
+        REPO / "data" / "historical" / "ES_1m_2022_2026.dbn.zst", symbol_prefix="ES"
     )
     cfg = load_strategy_config(REPO / "config" / "strategy.yaml")
     inst = load_instruments_config(REPO / "config" / "instruments.yaml").primary

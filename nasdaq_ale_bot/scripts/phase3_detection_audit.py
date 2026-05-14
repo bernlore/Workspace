@@ -186,10 +186,10 @@ def main() -> int:
     primary = instruments_cfg.primary
     correlated = instruments_cfg.correlated
 
-    nq_path = DATA_DIR / "NQ_1min_2022_2025.csv"
-    es_path = DATA_DIR / "mes1123.csv"
-    qqq_all = BacktestRunner.load_bars_from_nq_csv(nq_path)
-    spy_all = BacktestRunner.load_bars_from_databento_csv(es_path, symbol_prefix="ES")
+    nq_path = DATA_DIR / "NQ_1m_2022_2026.dbn.zst"
+    es_path = DATA_DIR / "ES_1m_2022_2026.dbn.zst"
+    qqq_all = BacktestRunner.load_bars_from_dbn(nq_path, symbol_prefix="NQ")
+    spy_all = BacktestRunner.load_bars_from_dbn(es_path, symbol_prefix="ES")
     # Replay end-to-end so the bias detector has the same warm-up the pipeline
     # gives it via its grid runs; we filter captures to OOS at the end.
     qqq_full = qqq_all

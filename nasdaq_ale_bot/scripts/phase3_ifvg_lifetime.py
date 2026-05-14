@@ -45,11 +45,11 @@ def slice_jan(bars):
 
 
 def main() -> int:
-    primary_all = BacktestRunner.load_bars_from_nq_csv(
-        REPO / "data" / "historical" / "NQ_1min_2022_2025.csv"
+    primary_all = BacktestRunner.load_bars_from_dbn(
+        REPO / "data" / "historical" / "NQ_1m_2022_2026.dbn.zst", symbol_prefix="NQ"
     )
-    correlated_all = BacktestRunner.load_bars_from_databento_csv(
-        REPO / "data" / "historical" / "mes1123.csv", symbol_prefix="ES"
+    correlated_all = BacktestRunner.load_bars_from_dbn(
+        REPO / "data" / "historical" / "ES_1m_2022_2026.dbn.zst", symbol_prefix="ES"
     )
     qqq = slice_jan(primary_all)
     spy = slice_jan(correlated_all)

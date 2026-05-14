@@ -20,7 +20,26 @@
       "Bash(npm *)",
       "Bash(npx *)",
       "Bash(bash *)",
-      "Bash(sh *)"
+      "Bash(sh *)",
+      "Bash(touch data/news_events.csv)",
+      "Bash(touch nasdaq_ale_bot/data/news_events.csv)",
+      "Bash(python3 ~/.claude/skills/goal/scripts/claude_goal.py *)",
+      "Bash(python scripts/phase3_walk_forward_3splits.py *)",
+      "Bash(python scripts/phase3_jan_funnel.py)",
+      "Bash(python scripts/phase35_ml_session_regime.py)",
+      "Bash(python scripts/phase4_check1_lookahead_audit.py)",
+      "Bash(python scripts/phase4_check2_param_stability.py)",
+      "Bash(python scripts/phase4_check3_apex_rolling.py)",
+      "Bash(cd c:\\Users\\loren\\Private\\Workspace\\Workspace\\nasdaq_ale_bot && touch data/news_events.csv)",
+      "Bash(cd \"c:\\Users\\loren\\Private\\Workspace\\Workspace\\nasdaq_ale_bot\" && touch data/news_events.csv)",
+      "Bash(python -c *)",
+      "Bash(python3 -c *)",
+      "Bash(python <<*)",
+      "Bash(python3 <<*)",
+      "Bash(cd * && python *)",
+      "Bash(cd * && python3 *)",
+      "Bash(touch * && cd * && python *)",
+      "Bash(touch * && python *)"
     ]
   }
 }
