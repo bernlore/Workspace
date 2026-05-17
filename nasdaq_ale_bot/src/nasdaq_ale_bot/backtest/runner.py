@@ -32,7 +32,7 @@ import structlog
 
 from nasdaq_ale_bot.core.account_ledger import AccountLedger
 from nasdaq_ale_bot.core.candle import Candle
-from nasdaq_ale_bot.core.state_machine import (
+from nasdaq_ale_bot.strategies.nasdaqale.state_machine import (
     StateMachine,
     StrategyState,
 )

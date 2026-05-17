@@ -1,7 +1,7 @@
 """Stateful 1m -> 5m SMT tracker (§A12, §A13).
 
 Owns the clock-anchored aggregation and the fail-closed logic so the
-pure divergence math in :mod:`nasdaq_ale_bot.detection.smt_pure` stays
+pure divergence math in :mod:`nasdaq_ale_bot.strategies.nasdaqale.detection.smt_pure` stays
 stateless.
 
 Rules (pinned by PLAN.md §A12/§A13):
@@ -28,7 +28,7 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Literal
 
-from ..detection.smt_pure import SMTConfigError, detect_smt_divergence
+from nasdaq_ale_bot.strategies.nasdaqale.detection.smt_pure import SMTConfigError, detect_smt_divergence
 from .candle import Candle
 
 

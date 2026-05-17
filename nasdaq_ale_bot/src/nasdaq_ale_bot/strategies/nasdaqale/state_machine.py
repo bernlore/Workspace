@@ -32,22 +32,22 @@ from zoneinfo import ZoneInfo
 
 import structlog
 
-from nasdaq_ale_bot.detection.cisd import (
+from nasdaq_ale_bot.strategies.nasdaqale.detection.cisd import (
     detect_bearish_cisd,
     detect_bullish_cisd,
 )
-from nasdaq_ale_bot.detection.equilibrium import is_in_discount, is_in_premium
-from nasdaq_ale_bot.detection.ifvg import CISDRange, detect_ifvg
-from nasdaq_ale_bot.detection.sweep import detect_sweep
+from nasdaq_ale_bot.strategies.nasdaqale.detection.equilibrium import is_in_discount, is_in_premium
+from nasdaq_ale_bot.strategies.nasdaqale.detection.ifvg import CISDRange, detect_ifvg
+from nasdaq_ale_bot.strategies.nasdaqale.detection.sweep import detect_sweep
 from nasdaq_ale_bot.filters.killzone import (
     in_primary_killzone,
     in_secondary_killzone,
 )
 
-from .candle import Candle
-from .candle_view import CandleView
-from .leg import Direction, Leg
-from .liquidity_tracker import LiquidityTracker
+from nasdaq_ale_bot.core.candle import Candle
+from nasdaq_ale_bot.core.candle_view import CandleView
+from nasdaq_ale_bot.core.leg import Direction, Leg
+from nasdaq_ale_bot.core.liquidity_tracker import LiquidityTracker
 
 _ET = ZoneInfo("America/New_York")
 

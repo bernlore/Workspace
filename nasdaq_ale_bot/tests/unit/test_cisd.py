@@ -1,7 +1,7 @@
 """CISD body-close detection — the critical correctness gate (A1/A1b/A2)."""
 
 from nasdaq_ale_bot.core.candle_view import CandleView
-from nasdaq_ale_bot.detection.cisd import (
+from nasdaq_ale_bot.strategies.nasdaqale.detection.cisd import (
     CONFIRM_WINDOW,
     LOOKBACK_CAP,
     detect_bearish_cisd,

@@ -1,0 +1,41 @@
+# ORB — 15-minute Opening Range Breakout on NQ.
+# Mechanical spec; see strategies/orb/ and .context/STRATEGY.md.
+
+strategy:
+  name: "orb_nq"
+
+opening_range:
+  start_time_et: "09:30"
+  duration_minutes: 15
+
+trading_window:
+  entry_window_start_et: "09:45"
+  entry_window_end_et: "12:00"
+  force_flat_time_et: "15:45"
+
+filters:
+  min_or_size_points: 10.0
+  max_or_size_points: 80.0
+
+entry:
+  confirmation_timeframe_minutes: 5
+  min_breakout_distance_ticks: 2
+  require_solid_body: true
+
+stop_loss:
+  placement: "or_midpoint_plus_buffer"
+  buffer_ticks: 2
+  max_stop_points: 50.0
+
+take_profit:
+  rule: "stop_distance_multiple"
+  rr_multiple: 1.5
+
+risk:
+  risk_per_trade_usd: 1000
+  max_contracts: 4
+  min_contracts: 1
+
+session:
+  max_trades_per_day: 1
+  daily_loss_limit_usd: 1000

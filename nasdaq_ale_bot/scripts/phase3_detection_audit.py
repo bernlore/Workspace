@@ -21,10 +21,10 @@ from pathlib import Path
 from typing import Any
 
 from nasdaq_ale_bot.backtest.runner import BacktestRunner
-from nasdaq_ale_bot.bias.htf_bias import HTFBiasDetector
-from nasdaq_ale_bot.core import state_machine as sm_mod
+from nasdaq_ale_bot.strategies.nasdaqale.htf_bias import HTFBiasDetector
+from nasdaq_ale_bot.strategies.nasdaqale import state_machine as sm_mod
 from nasdaq_ale_bot.core.account_ledger import AccountLedger
-from nasdaq_ale_bot.core.state_machine import StrategyState
+from nasdaq_ale_bot.strategies.nasdaqale.state_machine import StrategyState
 from nasdaq_ale_bot.execution.gates import GateList, load_strategy_config
 from nasdaq_ale_bot.execution.mock_broker import MockBroker
 from nasdaq_ale_bot.settings import load_instruments_config

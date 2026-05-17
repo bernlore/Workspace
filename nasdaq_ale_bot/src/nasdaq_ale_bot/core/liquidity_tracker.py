@@ -1,6 +1,6 @@
 """Minimal PDH/PDL + 3-bar swing high/low tracker.
 
-Feeds :func:`nasdaq_ale_bot.detection.sweep.detect_sweep` with real liquidity
+Feeds :func:`nasdaq_ale_bot.strategies.nasdaqale.detection.sweep.detect_sweep` with real liquidity
 levels instead of scaffold volatility heuristics. Mitigated levels (body-close
 through price) are dropped so the sweep detector's level list stays bounded.
 """

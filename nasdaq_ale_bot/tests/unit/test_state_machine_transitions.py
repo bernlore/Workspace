@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, timezone
 import structlog.testing
 
 from nasdaq_ale_bot.core.candle import Candle
-from nasdaq_ale_bot.core.state_machine import (
+from nasdaq_ale_bot.strategies.nasdaqale.state_machine import (
     StateMachine,
     StrategyState,
 )
@@ -33,7 +33,7 @@ def test_state_transitions_emit_one_event_each() -> None:
     sm = _make_sm()
 
     # Override handlers to force BIAS -> SWEEP -> CISD in 3 bars
-    from nasdaq_ale_bot.core.state_machine import (
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import (
         _handle_bias_determination,  # noqa: F401
     )
 
@@ -120,7 +120,7 @@ def test_full_lifecycle_synthetic() -> None:
 def test_threading_contract_documented() -> None:
     import inspect
 
-    from nasdaq_ale_bot.core import state_machine as sm_mod
+    from nasdaq_ale_bot.strategies.nasdaqale import state_machine as sm_mod
 
     doc = inspect.getdoc(sm_mod) or ""
     assert "single-threaded" in doc.lower()
@@ -131,7 +131,7 @@ def test_cross_thread_call_raises() -> None:
     """A4 — on_bar raises ThreadingContractViolation from a foreign thread."""
     import threading
 
-    from nasdaq_ale_bot.core.state_machine import ThreadingContractViolation
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import ThreadingContractViolation
 
     sm = _make_sm()
 
@@ -372,7 +372,7 @@ def test_default_waiting_for_sweep_advances_on_liquidity_sweep() -> None:
 
 
 def test_default_cisd_confirms_on_bullish_close() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_cisd_confirmation
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_cisd_confirmation
 
     sm = _make_sm()
     # bar[0] is the up-close reference (close>open, high=100). bar[1] is the sweep bar.
@@ -392,7 +392,7 @@ def test_default_cisd_confirms_on_bullish_close() -> None:
 
 
 def test_default_cisd_confirms_on_bearish_close() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_cisd_confirmation
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_cisd_confirmation
 
     sm = _make_sm()
     base = datetime(2024, 1, 15, 14, 30, tzinfo=timezone.utc)
@@ -410,7 +410,7 @@ def test_default_cisd_confirms_on_bearish_close() -> None:
 
 
 def test_default_cisd_awaits_if_no_match() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_cisd_confirmation
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_cisd_confirmation
 
     sm = _make_sm()
     sm.state = StrategyState.CISD_CONFIRMATION
@@ -429,7 +429,7 @@ def test_default_cisd_awaits_if_no_match() -> None:
 
 
 def test_default_cisd_no_setup_returns_to_bias() -> None:
-    from nasdaq_ale_bot.core.state_machine import _handle_cisd_confirmation
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import _handle_cisd_confirmation
 
     sm = _make_sm()
     sm._active_setup = None
@@ -442,7 +442,7 @@ def test_default_cisd_no_setup_returns_to_bias() -> None:
 def test_default_ifvg_formation_computes_long_tp() -> None:
     """Carry-forward IFVG: 1st handler call detects+stores zone (no transition);
     2nd call on a retest bar inside killzone transitions to ENTRY_EXECUTION."""
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_ifvg_formation
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_ifvg_formation
 
     sm = _make_sm()
     # 2024-01-16 is a Tuesday (NYSE trading day); 14:30 UTC = 09:30 ET → primary killzone.
@@ -487,7 +487,7 @@ def test_default_ifvg_formation_computes_long_tp() -> None:
 
 def test_default_ifvg_formation_computes_short_tp() -> None:
     """Mirror of the LONG carry-forward test."""
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_ifvg_formation
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_ifvg_formation
 
     sm = _make_sm()
     base = datetime(2024, 1, 16, 14, 30, tzinfo=timezone.utc)
@@ -524,7 +524,7 @@ def test_default_ifvg_formation_computes_short_tp() -> None:
 
 
 def test_default_ifvg_no_setup_returns_to_bias() -> None:
-    from nasdaq_ale_bot.core.state_machine import _handle_ifvg_formation
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import _handle_ifvg_formation
 
     sm = _make_sm()
     sm._bars.append(_bar(datetime(2024, 1, 15, 14, 30, tzinfo=timezone.utc), 100, 101, 99, 100.5))
@@ -534,7 +534,7 @@ def test_default_ifvg_no_setup_returns_to_bias() -> None:
 
 
 def test_default_entry_execution_increments_trades() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_entry_execution
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_entry_execution
 
     # 2024-01-16 is a Tuesday (regular trading day); 14:30 UTC = 09:30 ET
     # places the bar inside the primary killzone so the gate-wired handler
@@ -550,7 +550,7 @@ def test_default_entry_execution_increments_trades() -> None:
 
 
 def test_default_entry_execution_no_setup_returns_to_bias() -> None:
-    from nasdaq_ale_bot.core.state_machine import _handle_entry_execution
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import _handle_entry_execution
 
     sm = _make_sm()
     sm._bars.append(_bar(datetime(2024, 1, 15, 14, 30, tzinfo=timezone.utc), 100, 101, 99, 100.5))
@@ -560,7 +560,7 @@ def test_default_entry_execution_no_setup_returns_to_bias() -> None:
 
 
 def test_default_trade_management_long_stop_out() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_trade_management
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_trade_management
 
     sm = _make_sm()
     sm._active_setup = Setup(
@@ -575,7 +575,7 @@ def test_default_trade_management_long_stop_out() -> None:
 
 
 def test_default_trade_management_long_target_hit() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_trade_management
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_trade_management
 
     sm = _make_sm()
     sm._active_setup = Setup(
@@ -590,7 +590,7 @@ def test_default_trade_management_long_target_hit() -> None:
 
 
 def test_default_trade_management_short_stop_out() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_trade_management
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_trade_management
 
     sm = _make_sm()
     sm._active_setup = Setup(
@@ -605,7 +605,7 @@ def test_default_trade_management_short_stop_out() -> None:
 
 
 def test_default_trade_management_short_target_hit() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_trade_management
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_trade_management
 
     sm = _make_sm()
     sm._active_setup = Setup(
@@ -620,7 +620,7 @@ def test_default_trade_management_short_target_hit() -> None:
 
 
 def test_default_trade_management_holds_in_between() -> None:
-    from nasdaq_ale_bot.core.state_machine import Setup, _handle_trade_management
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup, _handle_trade_management
 
     sm = _make_sm()
     sm.state = StrategyState.TRADE_MANAGEMENT
@@ -636,7 +636,7 @@ def test_default_trade_management_holds_in_between() -> None:
 
 
 def test_default_trade_management_no_setup_flat() -> None:
-    from nasdaq_ale_bot.core.state_machine import _handle_trade_management
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import _handle_trade_management
 
     sm = _make_sm()
     sm._bars.append(_bar(datetime(2024, 1, 15, 14, 30, tzinfo=timezone.utc), 100, 101, 99, 100.5))
@@ -646,7 +646,7 @@ def test_default_trade_management_no_setup_flat() -> None:
 
 
 def test_waiting_for_sweep_awaits_when_no_setup() -> None:
-    from nasdaq_ale_bot.core.state_machine import _handle_waiting_for_sweep
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import _handle_waiting_for_sweep
 
     sm = _make_sm()
     sm._bars.append(_bar(datetime(2024, 1, 15, 14, 30, tzinfo=timezone.utc), 100, 101, 99, 100.5))

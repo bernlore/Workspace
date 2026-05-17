@@ -29,7 +29,7 @@ import pytest
 
 from nasdaq_ale_bot.backtest.grid import GridParams, compute_param_set_hash
 from nasdaq_ale_bot.backtest.runner import BacktestRunner
-from nasdaq_ale_bot.bias.htf_bias import HTFBias
+from nasdaq_ale_bot.strategies.nasdaqale.htf_bias import HTFBias
 from nasdaq_ale_bot.core.account_ledger import AccountLedger
 from nasdaq_ale_bot.core.candle import Candle
 from nasdaq_ale_bot.execution.mock_broker import MockBroker

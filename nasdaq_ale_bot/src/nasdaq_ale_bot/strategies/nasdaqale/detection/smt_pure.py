@@ -7,7 +7,7 @@ layer instrument-agnostic (Principle 2).
 
 from dataclasses import dataclass
 
-from ..core.candle import Candle
+from nasdaq_ale_bot.core.candle import Candle
 
 
 class SMTConfigError(ValueError):

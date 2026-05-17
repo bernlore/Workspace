@@ -6,7 +6,7 @@ The trigger for confirmation is ALWAYS view[j].close, never view[j].high / low.
 
 from dataclasses import dataclass
 
-from ..core.candle_view import CandleView
+from nasdaq_ale_bot.core.candle_view import CandleView
 
 LOOKBACK_CAP = 20
 CONFIRM_WINDOW = 15

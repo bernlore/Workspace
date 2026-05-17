@@ -29,7 +29,7 @@ from pathlib import Path
 from nasdaq_ale_bot.backtest.grid import GridHarness
 from nasdaq_ale_bot.backtest.runner import BacktestRunner
 from nasdaq_ale_bot.backtest.walk_forward import WalkForwardController
-from nasdaq_ale_bot.bias.htf_bias import HTFBiasDetector
+from nasdaq_ale_bot.strategies.nasdaqale.htf_bias import HTFBiasDetector
 from nasdaq_ale_bot.execution.gates import GateList, load_strategy_config
 from nasdaq_ale_bot.settings import load_instruments_config
 

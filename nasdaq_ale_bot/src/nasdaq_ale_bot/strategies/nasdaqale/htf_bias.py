@@ -11,7 +11,7 @@ only on genuine transitions -- no-op bars produce no log noise.
 
 The detector is strictly single-timeframe internally (1m in, HTF out);
 aggregation uses :mod:`nasdaq_ale_bot.bias.timeframe`.  FVG detection on
-the aggregated 4H bars reuses :func:`nasdaq_ale_bot.detection.fvg.detect_fvg`.
+the aggregated 4H bars reuses :func:`nasdaq_ale_bot.strategies.nasdaqale.detection.fvg.detect_fvg`.
 """
 
 from __future__ import annotations
@@ -21,12 +21,12 @@ from enum import StrEnum
 
 import structlog
 
-from ..core.candle import Candle
-from ..core.candle_view import CandleView
-from ..core.leg import Direction
-from ..detection.fvg import FVG, detect_fvg
-from ..settings import InstrumentSpec
-from .timeframe import DailyAggregator, TimeframeAggregator
+from nasdaq_ale_bot.core.candle import Candle
+from nasdaq_ale_bot.core.candle_view import CandleView
+from nasdaq_ale_bot.core.leg import Direction
+from nasdaq_ale_bot.strategies.nasdaqale.detection.fvg import FVG, detect_fvg
+from nasdaq_ale_bot.settings import InstrumentSpec
+from nasdaq_ale_bot.bias.timeframe import DailyAggregator, TimeframeAggregator
 
 
 class HTFBias(StrEnum):

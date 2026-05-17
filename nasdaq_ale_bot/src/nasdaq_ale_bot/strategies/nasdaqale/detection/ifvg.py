@@ -7,8 +7,8 @@ to ``tol_offset`` allowed overlap — a 1m-friendly relaxation of the strict
 
 from dataclasses import dataclass
 
-from ..core.candle_view import CandleView
-from ..core.leg import Direction
+from nasdaq_ale_bot.core.candle_view import CandleView
+from nasdaq_ale_bot.core.leg import Direction
 from .fvg import FVG
 
 
@@ -81,7 +81,7 @@ def detect_ifvg(
     some later bar within the range. Mirror for bearish setups.
     """
     if cisd_range.end > i:
-        from ..core.candle_view import LookAheadError
+        from nasdaq_ale_bot.core.candle_view import LookAheadError
 
         raise LookAheadError(f"cisd_range.end {cisd_range.end} > horizon {i}")
 

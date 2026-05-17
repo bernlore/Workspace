@@ -1,0 +1,19 @@
+# Unified trading-cost model — single source of truth.
+#
+# Every backtest path (ORB Jan-2024 sanity check, three-split walk-forward,
+# Tradeify rolling sim) consumes these numbers via MockBroker. Scripts must
+# NOT add costs separately — MockBroker's realized_pnl is already net.
+#
+# See .context/TECH_STACK.md and AI_INSIGHTS #3.
+
+nq:
+  commission_per_side_per_contract_usd: 4.50
+  slippage_ticks_per_side: 1
+  tick_value_usd: 5.00
+  # => $9.00 commission + $10.00 slippage = $19.00 round-trip per NQ contract
+
+mnq:
+  commission_per_side_per_contract_usd: 0.50
+  slippage_ticks_per_side: 1
+  tick_value_usd: 0.50
+  # => $1.00 commission + $1.00 slippage = $2.00 round-trip per MNQ contract

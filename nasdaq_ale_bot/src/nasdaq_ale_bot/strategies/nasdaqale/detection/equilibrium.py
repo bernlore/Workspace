@@ -1,6 +1,6 @@
 """Discount / premium equilibrium checks using Fib 0.5 of a leg."""
 
-from ..core.leg import Leg
+from nasdaq_ale_bot.core.leg import Leg
 
 
 def _midpoint(leg: Leg) -> float:

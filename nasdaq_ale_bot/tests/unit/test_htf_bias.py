@@ -9,7 +9,7 @@ import pytest
 import structlog
 from structlog.testing import capture_logs
 
-from nasdaq_ale_bot.bias.htf_bias import (
+from nasdaq_ale_bot.strategies.nasdaqale.htf_bias import (
     FlipState,
     HTFBias,
     HTFBiasDetector,

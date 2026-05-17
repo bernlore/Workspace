@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from nasdaq_ale_bot.core.candle_view import CandleView
 from nasdaq_ale_bot.core.leg import Direction
 from nasdaq_ale_bot.core.liquidity import LiquidityKind, LiquidityLevel
-from nasdaq_ale_bot.detection.sweep import detect_sweep
+from nasdaq_ale_bot.strategies.nasdaqale.detection.sweep import detect_sweep
 
 from .conftest import mk_candle
 

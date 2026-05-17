@@ -2,7 +2,7 @@
 
 from nasdaq_ale_bot.core.candle_view import CandleView
 from nasdaq_ale_bot.core.leg import Direction
-from nasdaq_ale_bot.detection.fvg import detect_fvg
+from nasdaq_ale_bot.strategies.nasdaqale.detection.fvg import detect_fvg
 
 from .conftest import mk_candle
 

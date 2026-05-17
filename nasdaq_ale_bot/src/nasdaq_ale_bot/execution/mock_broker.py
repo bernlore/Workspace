@@ -46,12 +46,14 @@ from nasdaq_ale_bot.execution.broker import (
     TradingDay,
     _QuantizingBrokerMixin,
 )
+from nasdaq_ale_bot.execution.cost_model import CostModel
 
 _log = structlog.get_logger(__name__)
 
-# Round-trip commission charged on the EXIT side ($4.50 per contract — CME
-# standard). Deducted from ``FillEvent.realized_pnl`` at the emit site so all
-# downstream consumers (TradeRecord, ledger, equity) see net-of-fee pnl.
+# Legacy round-trip commission charged on the EXIT side ($4.50 per contract).
+# Used only when no ``cost_model`` is supplied to MockBroker (the NasdaqAle /
+# Phase 3 path). When a ``CostModel`` IS supplied, commission and slippage come
+# from it instead — see :meth:`_exit_commission` and :meth:`_slip_price`.
 COMMISSION_PER_CONTRACT = Decimal("4.50")
 
 
@@ -144,6 +146,7 @@ class MockBroker(_QuantizingBrokerMixin):
         initial_equity: Decimal,
         fill_model: Literal["sl_wins"] = "sl_wins",
         point_value: Decimal = Decimal("1"),
+        cost_model: CostModel | None = None,
     ) -> None:
         self._ledger = ledger
         self._equity: Decimal = initial_equity
@@ -152,12 +155,52 @@ class MockBroker(_QuantizingBrokerMixin):
         # equities (QQQ/SPY) point_value=1 reproduces share-cash semantics; for
         # futures (NQ=20, ES=50, MNQ=2) it scales pnl into account dollars.
         self._point_value: Decimal = point_value
+        # Unified cost model (commission + slippage). When None, legacy
+        # behaviour applies: $4.50/contract round-trip at exit, no slippage.
+        # When set, every fill is shifted by slippage and the round-trip
+        # commission is taken from the model. See AI_INSIGHTS #3.
+        self._cost_model: CostModel | None = cost_model
         self._pending: list[BracketOrder] = []
         self._positions: dict[str, MockPosition] = {}  # keyed by client_order_id
         self._order_history: dict[str, OrderState] = {}
         self._pending_flatten_symbols: set[str | None] = set()
         # Accumulated commission across all exits (in account dollars).
         self._commission_total: Decimal = Decimal("0")
+
+    # ------------------------------------------------------------------
+    # Cost-model helpers (active only when a CostModel was supplied)
+    # ------------------------------------------------------------------
+
+    def _slip_price(self) -> Decimal:
+        """Adverse price shift per fill, in price units (0 when no cost model)."""
+        if self._cost_model is None:
+            return Decimal("0")
+        tick_size = self._cost_model.tick_value_usd / self._point_value
+        return self._cost_model.slippage_price(tick_size)
+
+    def _apply_entry_slip(self, side: str, price: Decimal) -> Decimal:
+        """Shift an entry fill price against the trader (buy higher, sell lower)."""
+        slip = self._slip_price()
+        if slip == 0:
+            return price
+        return price + slip if side == "BUY" else price - slip
+
+    def _apply_exit_slip(self, pos_side: str, price: Decimal) -> Decimal:
+        """Shift an exit fill price against the trader.
+
+        Closing a long is a sell (fills lower); closing a short is a buy
+        (fills higher).
+        """
+        slip = self._slip_price()
+        if slip == 0:
+            return price
+        return price - slip if pos_side == "BUY" else price + slip
+
+    def _exit_commission(self, qty: Decimal) -> Decimal:
+        """Round-trip commission charged at exit for ``qty`` contracts."""
+        if self._cost_model is None:
+            return COMMISSION_PER_CONTRACT * qty
+        return self._cost_model.commission_round_trip * qty
 
     # ------------------------------------------------------------------
     # Phase 3 unique method — called by BacktestRunner once per bar
@@ -349,6 +392,7 @@ class MockBroker(_QuantizingBrokerMixin):
             raise ValueError(
                 f"place_immediate: position already exists for {client_order_id}"
             )
+        fill_price = self._apply_entry_slip(side, fill_price)
         self._positions[client_order_id] = MockPosition(
             symbol=symbol,
             side=side,  # type: ignore[arg-type]
@@ -526,7 +570,7 @@ class MockBroker(_QuantizingBrokerMixin):
                 symbol=order.symbol,
                 side=order.side,
                 qty=order.qty,
-                fill_price=fill_price,
+                fill_price=self._apply_entry_slip(order.side, fill_price),
                 fill_ts=bar.ts,
                 fill_reason="ENTRY",
                 realized_pnl=Decimal("0"),
@@ -555,7 +599,7 @@ class MockBroker(_QuantizingBrokerMixin):
             symbol=order.symbol,
             side=order.side,
             qty=order.qty,
-            fill_price=fill_price,
+            fill_price=self._apply_entry_slip(order.side, fill_price),
             fill_ts=bar.ts,
             fill_reason="ENTRY",
             realized_pnl=Decimal("0"),
@@ -590,8 +634,9 @@ class MockBroker(_QuantizingBrokerMixin):
             else:
                 return None
 
+        fill_price = self._apply_exit_slip(pos.side, fill_price)
         pnl = self._calc_pnl(pos, fill_price)
-        net_pnl = pnl - COMMISSION_PER_CONTRACT * pos.qty
+        net_pnl = pnl - self._exit_commission(pos.qty)
         return FillEvent(
             client_order_id=pos.client_order_id,
             symbol=pos.symbol,
@@ -632,8 +677,9 @@ class MockBroker(_QuantizingBrokerMixin):
             else:
                 return None
 
+        fill_price = self._apply_exit_slip(pos.side, fill_price)
         pnl = self._calc_pnl(pos, fill_price)
-        net_pnl = pnl - COMMISSION_PER_CONTRACT * pos.qty
+        net_pnl = pnl - self._exit_commission(pos.qty)
         return FillEvent(
             client_order_id=pos.client_order_id,
             symbol=pos.symbol,
@@ -659,8 +705,9 @@ class MockBroker(_QuantizingBrokerMixin):
         ``realized_pnl`` on the returned FillEvent is **net of commissions**
         so downstream TradeRecords / equity / ledger see the post-fee number.
         """
+        fill_price = self._apply_exit_slip(pos.side, fill_price)
         pnl = self._calc_pnl(pos, fill_price)
-        commission = COMMISSION_PER_CONTRACT * pos.qty
+        commission = self._exit_commission(pos.qty)
         net_pnl = pnl - commission
         return FillEvent(
             client_order_id=pos.client_order_id,
@@ -692,7 +739,7 @@ class MockBroker(_QuantizingBrokerMixin):
         accumulate the running broker-level commission_total.
         """
         commission = (
-            COMMISSION_PER_CONTRACT * fill.qty
+            self._exit_commission(fill.qty)
             if fill.fill_reason != "ENTRY"
             else Decimal("0")
         )

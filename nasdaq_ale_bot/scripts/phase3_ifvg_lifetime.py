@@ -24,8 +24,8 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from nasdaq_ale_bot.backtest.runner import BacktestRunner
-from nasdaq_ale_bot.bias.htf_bias import HTFBiasDetector
-from nasdaq_ale_bot.core import state_machine as sm_mod
+from nasdaq_ale_bot.strategies.nasdaqale.htf_bias import HTFBiasDetector
+from nasdaq_ale_bot.strategies.nasdaqale import state_machine as sm_mod
 from nasdaq_ale_bot.core.account_ledger import AccountLedger
 from nasdaq_ale_bot.execution.gates import GateList, load_strategy_config
 from nasdaq_ale_bot.execution.mock_broker import MockBroker
@@ -78,7 +78,7 @@ def main() -> int:
             # Re-derive nearest IFVG by re-running detect_ifvg with the same args
             # so we can read fvg.top/bottom (handler doesn't store the FVG dataclass).
             from nasdaq_ale_bot.core.leg import Direction
-            from nasdaq_ale_bot.detection.ifvg import CISDRange, detect_ifvg
+            from nasdaq_ale_bot.strategies.nasdaqale.detection.ifvg import CISDRange, detect_ifvg
 
             direction = Direction.UP if setup.bias == "LONG" else Direction.DOWN
             sweep_bar = view[setup.sweep_idx]

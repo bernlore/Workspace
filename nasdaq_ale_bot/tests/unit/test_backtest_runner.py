@@ -35,7 +35,7 @@ from nasdaq_ale_bot.backtest.runner import BacktestResult, BacktestRunner, Trade
 from nasdaq_ale_bot.core.account_ledger import AccountLedger
 from nasdaq_ale_bot.core.candle import Candle
 from nasdaq_ale_bot.core.candle_view import CandleView, LookAheadError
-from nasdaq_ale_bot.core.state_machine import StateMachine, StrategyState
+from nasdaq_ale_bot.strategies.nasdaqale.state_machine import StateMachine, StrategyState
 from nasdaq_ale_bot.execution.mock_broker import MockBroker
 
 
@@ -108,7 +108,7 @@ def _make_runner(
 
 def _inject_entry_execution_handler(sm: StateMachine, setup_params: dict) -> None:
     """Override SM handlers so it goes straight to ENTRY_EXECUTION on bar 0."""
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     original_handlers = dict(sm._handlers)  # noqa: SLF001
 
@@ -195,7 +195,7 @@ def test_fill_timestamp_semantics() -> None:
     sm = runner._state_machine  # noqa: SLF001
     call_count = {"n": 0}
 
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     arm_ts = bars[5].ts
 
@@ -310,7 +310,7 @@ def test_ledger_decimal_integrity() -> None:
     runner = _make_runner(bars, ledger=ledger, broker=broker)
 
     sm = runner._state_machine  # noqa: SLF001
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     call_n = {"n": 0}
 
@@ -386,7 +386,7 @@ def test_single_bar_no_crash() -> None:
 
 def test_multi_day_state_continuity() -> None:
     """SM state persists across day boundaries — runner does not reset state."""
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     # Day 0: 5 bars, push SM into TRADE_MANAGEMENT.
     day0 = [mk_candle(i, day_offset=0) for i in range(5)]
@@ -455,7 +455,7 @@ def test_trades_list_matches_fill_count() -> None:
     runner = _make_runner(bars, ledger=ledger, broker=broker)
 
     sm = runner._state_machine  # noqa: SLF001
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     armed = {"done": False}
 
@@ -558,7 +558,7 @@ def test_result_includes_param_set_hash() -> None:
     runner = _make_runner(bars, ledger=ledger, broker=broker, param_set_hash="abc123")
 
     sm = runner._state_machine  # noqa: SLF001
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     def _bias(sm, view):
         sm._active_setup = Setup(  # noqa: SLF001
@@ -662,7 +662,7 @@ def test_state_machine_to_broker_bridge() -> None:
     )
 
     sm = runner._state_machine  # noqa: SLF001
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     called = {"n": 0}
     arm_ts = bars[0].ts
@@ -731,7 +731,7 @@ def test_same_bar_double_arm_deduplicated() -> None:
     runner = _make_runner(bars, ledger=ledger, broker=broker)
     sm = runner._state_machine  # noqa: SLF001
 
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     # Use a fixed entry_bar_ts so client_order_id is identical across bars.
     fixed_ts = bars[0].ts
@@ -798,7 +798,7 @@ def test_flatten_on_trade_management_to_flat() -> None:
     runner = _make_runner(bars, ledger=ledger, broker=broker)
     sm = runner._state_machine  # noqa: SLF001
 
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     call_n = {"n": 0}
 
@@ -927,7 +927,7 @@ def test_arm_bracket_take_profit_fallback_short() -> None:
 
     runner = _make_runner(bars, ledger=ledger, broker=broker)
     sm = runner._state_machine  # noqa: SLF001
-    from nasdaq_ale_bot.core.state_machine import Setup
+    from nasdaq_ale_bot.strategies.nasdaqale.state_machine import Setup
 
     called = {"n": 0}
 

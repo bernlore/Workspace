@@ -29,11 +29,11 @@ from typing import Any
 
 import pytest
 
-from nasdaq_ale_bot.bias.htf_bias import HTFBias
+from nasdaq_ale_bot.strategies.nasdaqale.htf_bias import HTFBias
 from nasdaq_ale_bot.core.account_ledger import AccountLedger
 from nasdaq_ale_bot.core.candle import Candle
 from nasdaq_ale_bot.core.logging_sink import JsonlSink
-from nasdaq_ale_bot.core.state_machine import StateMachine, StrategyState
+from nasdaq_ale_bot.strategies.nasdaqale.state_machine import StateMachine, StrategyState
 from nasdaq_ale_bot.execution.gates import GateList, TradeIntent
 
 _FIXTURE_CSV = Path(__file__).parent.parent / "fixtures" / "qqq_1m_sample.csv"

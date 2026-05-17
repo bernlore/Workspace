@@ -2,7 +2,7 @@
 
 import pytest
 
-from nasdaq_ale_bot.detection.smt_pure import SMTConfigError, detect_smt_divergence
+from nasdaq_ale_bot.strategies.nasdaqale.detection.smt_pure import SMTConfigError, detect_smt_divergence
 
 from .conftest import mk_candle
 

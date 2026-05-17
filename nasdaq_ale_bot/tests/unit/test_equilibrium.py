@@ -1,7 +1,7 @@
 """Equilibrium (Fib 0.5) checks."""
 
 from nasdaq_ale_bot.core.leg import Direction, Leg
-from nasdaq_ale_bot.detection.equilibrium import is_in_discount, is_in_premium
+from nasdaq_ale_bot.strategies.nasdaqale.detection.equilibrium import is_in_discount, is_in_premium
 
 
 def _leg() -> Leg:

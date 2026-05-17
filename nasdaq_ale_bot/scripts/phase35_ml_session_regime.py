@@ -36,7 +36,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 
 from nasdaq_ale_bot.backtest.runner import BacktestRunner
-from nasdaq_ale_bot.bias.htf_bias import HTFBiasDetector
+from nasdaq_ale_bot.strategies.nasdaqale.htf_bias import HTFBiasDetector
 from nasdaq_ale_bot.core.account_ledger import AccountLedger
 from nasdaq_ale_bot.execution.gates import GateList, load_strategy_config
 from nasdaq_ale_bot.execution.mock_broker import MockBroker

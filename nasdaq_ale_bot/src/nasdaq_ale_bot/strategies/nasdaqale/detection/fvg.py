@@ -2,8 +2,8 @@
 
 from dataclasses import dataclass
 
-from ..core.candle_view import CandleView
-from ..core.leg import Direction
+from nasdaq_ale_bot.core.candle_view import CandleView
+from nasdaq_ale_bot.core.leg import Direction
 
 
 @dataclass

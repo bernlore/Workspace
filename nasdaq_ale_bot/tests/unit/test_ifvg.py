@@ -4,7 +4,7 @@ import pytest
 
 from nasdaq_ale_bot.core.candle_view import CandleView, LookAheadError
 from nasdaq_ale_bot.core.leg import Direction
-from nasdaq_ale_bot.detection.ifvg import CISDRange, detect_ifvg
+from nasdaq_ale_bot.strategies.nasdaqale.detection.ifvg import CISDRange, detect_ifvg
 
 from .conftest import mk_candle
 
