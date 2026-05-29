@@ -1,5 +1,5 @@
 # Claude Code – Installierte Tools & Skills
-
+## Project of Bernd Lorenzer
 Übersicht über alles, was in dieser Session eingerichtet wurde, und wie du es mit Claude Code (VS Code) verwendest.
 
 ---
@@ -249,5 +249,6 @@ Nach Änderungen an `settings.json` oder neuen Skills:
 | `~/.claude/agents/` | Agenten-Definitionen |
 | `~/.claude/plugins/` | Installierte Plugins |
 | `~/.claude/CLAUDE.md` | OMC Systemprompt-Erweiterung |
-#   W o r k s p a c e  
+#   W o r k s p a c e 
+ 
  
